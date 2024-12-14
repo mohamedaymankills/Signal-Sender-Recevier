@@ -120,6 +120,7 @@ START
               |---> If data == 1: Abort with core dump (abort())
 END
 ```
+---
 ## Implementation Details
 
 ### Real-Time Signals Overview
