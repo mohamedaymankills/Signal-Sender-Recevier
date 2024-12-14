@@ -88,7 +88,38 @@ This generates the following executables:
    - Data = `1`: Receiver aborts and generates a core dump.
 
 ---
+## Flowcharts
+### Sender
+```sql
+START
+ |
+ |---> Parse command-line arguments (receiver_pid, data)
+ |
+ |---> Validate input (data == 0 or 1)
+ |
+ |---> Use sigqueue() to send SIGRTMIN with data to receiver_pid
+ |
+ |---> Print confirmation
+ |
+END
+```
 
+### Recevier
+```sql
+START
+ |
+ |---> Print receiver PID
+ |
+ |---> Setup SIGRTMIN handler using sigaction()
+ |
+ |---> WAIT for signals (pause in infinite loop)
+      |
+      |---> On SIGRTMIN:
+              |---> Extract data (info->si_value.sival_int)
+              |---> If data == 0: Terminate gracefully (exit(0))
+              |---> If data == 1: Abort with core dump (abort())
+END
+```
 ## Implementation Details
 
 ### Real-Time Signals Overview
