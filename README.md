@@ -28,6 +28,7 @@ This project demonstrates inter-process communication using **real-time signals*
    - **0**: Terminates gracefully.
    - **1**: Aborts with a core dump.
 
+
 The project highlights the use of POSIX real-time signals, which support queueing and data transmission, making them suitable for real-time systems and advanced IPC scenarios.
 
 ---
